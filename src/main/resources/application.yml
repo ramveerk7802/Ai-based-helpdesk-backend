@@ -1,0 +1,23 @@
+spring:
+  datasource:
+    url: jdbc
+    username: root
+    password: AAaa@123
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+      dialect: org.hibernate.dialect.MySQL8Dialect
+    show-sql: true
+
+  ai:
+    ollama:
+      base-url: http://localhost:11434
+
+
+
+
+  application:
+    name: Ai-Based-Helpdesk
+
