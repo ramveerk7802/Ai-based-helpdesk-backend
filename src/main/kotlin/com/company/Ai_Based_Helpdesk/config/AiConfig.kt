@@ -1,6 +1,7 @@
 package com.company.Ai_Based_Helpdesk.config
 
 import org.springframework.ai.chat.client.ChatClient
+import org.springframework.ai.chat.client.advisor.SimpleLoggerAdvisor
 import org.springframework.ai.ollama.api.OllamaChatOptions
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -11,6 +12,7 @@ class AiConfig {
     @Bean
     fun chatClient(builder: ChatClient.Builder): ChatClient{
         return builder
+            .defaultAdvisors(SimpleLoggerAdvisor())
             .defaultOptions(
                 OllamaChatOptions.builder()
                     .model("llama3.2:latest")
