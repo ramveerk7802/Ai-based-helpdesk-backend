@@ -23,7 +23,7 @@ class TicketService(private val repository: TicketRepository) {
     @Transactional
     fun updateTicket(id: Long,ticket:Ticket): Ticket{
         val existingTicket = repository.findById(id).orElseThrow { TicketNotFoundException("Ticket not found with id : $id") }
-        existingTicket.status=ticket.status
+//        existingTicket.status=ticket.status
         /**
          * if used the @Transactional annotation then no need explicitly
          * save the entity Jpa Automatically changes in field detect and save it
