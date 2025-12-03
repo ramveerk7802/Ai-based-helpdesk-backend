@@ -4,14 +4,23 @@ import com.company.Ai_Based_Helpdesk.entities.Ticket
 import jakarta.persistence.QueryHint
 import org.hibernate.jpa.HibernateHints
 import org.springframework.data.jpa.repository.JpaRepository
+import org.springframework.data.jpa.repository.Query
 import org.springframework.data.jpa.repository.QueryHints
+import org.springframework.data.repository.query.Param
 
 interface TicketRepository : JpaRepository<Ticket, Long> {
 
     @QueryHints(value = [
         QueryHint(name = HibernateHints.HINT_READ_ONLY, value = "true")
     ])
-    fun findByUsername(username:String): List<Ticket>
+    fun findByName(name:String): List<Ticket>
+
+
+    @QueryHints(value = [
+        QueryHint(name = HibernateHints.HINT_READ_ONLY, value = "true")
+    ])
+    @Query("SELECT t FROM Ticket t WHERE t.status IN('OPEN','IN_PROGRESS')")
+    fun findActiveTickets(): List<Ticket>
 
     /**
      * @QueryHints(value = [

@@ -1,5 +1,6 @@
 package com.company.Ai_Based_Helpdesk.services
 
+import com.company.Ai_Based_Helpdesk.entities.Status
 import com.company.Ai_Based_Helpdesk.entities.Ticket
 import com.company.Ai_Based_Helpdesk.exceptions.TicketNotFoundException
 import com.company.Ai_Based_Helpdesk.repositories.TicketRepository
@@ -14,14 +15,19 @@ class TicketService(private val repository: TicketRepository) {
     private val logger = LoggerFactory.getLogger(TicketService::class.java)
 
 //    create ticket
-
     fun createTicket(ticket: Ticket): Ticket{
         return repository.save(ticket)
     }
 
+//    Find All Active Ticket
+fun getActiveTickets(): List<Ticket>{
+    return repository.findActiveTickets()
+}
+
+
 //    update ticket
     @Transactional
-    fun updateTicket(id: Long,ticket:Ticket): Ticket{
+    fun updateTicket(id: Long,status: String?,description: String?): Ticket{
         val existingTicket = repository.findById(id).orElseThrow { TicketNotFoundException("Ticket not found with id : $id") }
 //        existingTicket.status=ticket.status
         /**
@@ -36,16 +42,14 @@ class TicketService(private val repository: TicketRepository) {
 
 
 //    getTicket
-
     @Transactional(readOnly = true)
-    fun getTicket(ticketId: Long): Ticket{
+    fun getTicketById(ticketId: Long): Ticket{
         return repository.findById(ticketId).orElseThrow { TicketNotFoundException("Ticket not Found  with id : $ticketId ") }
     }
 
 //    get Ticket by username
-
     @Transactional(readOnly = true)
 fun getTicketByUsername(username: String): List<Ticket>{
-    return repository.findByUsername(username = username)
+    return repository.findByName(name = username)
 }
 }

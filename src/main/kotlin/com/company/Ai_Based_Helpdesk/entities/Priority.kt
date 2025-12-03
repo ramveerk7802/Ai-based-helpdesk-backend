@@ -8,16 +8,16 @@ enum class Priority {
     HIGH;
 
     companion object {
-        // This acts like a "translator" for the AI
-        @JsonCreator
-        @JvmStatic
-        fun fromString(key: String?): Priority? {
-            return key?.let {
+        @JsonCreator // <--- USE THIS instead of @OptionalExpectation
+        fun fromString(key: String?): Priority {
+            return if (key.isNullOrBlank()) {
+                LOW
+            } else {
                 try {
-                    // This fixes the error by forcing "Medium" -> "MEDIUM"
-                    Priority.valueOf(it.uppercase())
-                } catch (e: Exception) {
-                    // If the AI sends garbage, default to LOW
+                    // This handles "High", "high", "HIGH" -> HIGH
+                    valueOf(key.uppercase())
+                } catch (e: IllegalArgumentException) {
+                    // Fallback for "Critical", "Urgent", or typos -> LOW
                     LOW
                 }
             }

@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyDescription
 import jakarta.persistence.*
 import org.hibernate.annotations.CreationTimestamp
 import org.hibernate.annotations.UpdateTimestamp
-import java.io.Serializable
 import java.time.LocalDateTime
 
 @Entity
@@ -18,11 +17,6 @@ data class Ticket(
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     var id: Long? = null,
 
-    @Lob
-    @Column(columnDefinition = "TEXT")
-    // 2. Describe the field clearly to the AI
-    @JsonPropertyDescription("A brief summary or title of the issue")
-    var summary: String? = null,
 
     @Enumerated(EnumType.STRING)
     // 3. CRITICAL FIX: List the allowed values explicitly.
@@ -30,20 +24,26 @@ data class Ticket(
     @JsonPropertyDescription("The priority level. MUST be one of: LOW, MEDIUM, HIGH.")
     var priority: Priority? = null,
 
-    @Column(unique = true, nullable = false)
-    @JsonPropertyDescription("The username of the person requesting support")
-    var username: String? = null,
+    @Column(name = "email",nullable = false)
+    @JsonPropertyDescription("The email address of the person requesting support")
+    var email: String?=null,
+
+    @Column(nullable = false)
+    @JsonPropertyDescription("The name of the person requesting support")
+    var name: String? = null,
 
     @JsonPropertyDescription("The detailed explanation of the issue")
     var description: String? = null,
 
+
+
     @Enumerated(EnumType.STRING)
     // 4. List status values too, just to be safe.
-    @JsonPropertyDescription("The current status of the ticket. Values: OPEN, RESOLVED, CLOSED.")
+    @JsonPropertyDescription("The current status of the ticket. Values: OPEN, IN_PROGRESS,RESOLVED.")
     var status: Status? = null,
 
     @JsonPropertyDescription("The category of the issue (e.g., Hardware, Software, Network)")
-    var category: String? = null,
+    var category: Category? = null,
 
     @CreationTimestamp
     @Column(updatable = false)
