@@ -1,6 +1,6 @@
 # AI-Based Helpdesk System 🛡️
 
-![Java](https://img.shields.io/badge/Java-17%2B-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white) ![Kotlin](https://img.shields.io/badge/Kotlin-2.0-7F52FF?style=for-the-badge&logo=kotlin&logoColor=white) ![Spring Boot](https://img.shields.io/badge/Spring_Boot-3.5.8-6DB33F?style=for-the-badge&logo=spring&logoColor=white) ![Spring AI](https://img.shields.io/badge/Spring_AI-1.1.1-6DB33F?style=for-the-badge&logo=spring&logoColor=white)
+![Java](https://img.shields.io/badge/Java-21%2B-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white) ![Kotlin](https://img.shields.io/badge/Kotlin-2.0-7F52FF?style=for-the-badge&logo=kotlin&logoColor=white) ![Spring Boot](https://img.shields.io/badge/Spring_Boot-3.5.8-6DB33F?style=for-the-badge&logo=spring&logoColor=white) ![Spring AI](https://img.shields.io/badge/Spring_AI-1.1.1-6DB33F?style=for-the-badge&logo=spring&logoColor=white)
 
 An intelligent, conversational Helpdesk Agent designed for **RV Tech Support**. The system uses **Spring Boot** and **Spring AI** to leverage Large Language Models (LLMs) with **Function Calling** capabilities. The AI agent, "Liza," interacts directly with the database to create, update, and retrieve support tickets while maintaining a polite and professional persona.
 
@@ -43,7 +43,7 @@ Liza operates on a specific state machine defined in the system prompt:
 
 * **Language:** Kotlin
 * **Framework:** Spring Boot 3.x
-* **AI Integration:** Spring AI (OpenAI / Azure OpenAI / Ollama)
+* **AI Integration:** Spring AI (GenAi)
 * **Database:** MySQL
 * **Build Tool:** Maven/Gradle
 
@@ -66,7 +66,7 @@ The LLM is mapped to the following Kotlin functions in `TicketDatabaseTool`:
 ## 🚀 Getting Started
 
 ### Prerequisites
-* JDK 17 or higher
+* JDK 21 or higher
 * Maven or Gradle
 * An API Key (OpenAI, Anthropic, or Mistral)
 
@@ -82,13 +82,17 @@ The LLM is mapped to the following Kotlin functions in `TicketDatabaseTool`:
     Update your `application.yml` with your AI provider keys and database settings.
     ```yaml
     spring:
-      ai:
-        openai:
-          api-key: ${OPENAI_API_KEY}
-      datasource:
-        url: ${DATABASE_URL}
-        username: ${DATABASE_USERNAME}
-        password: ${DATABASE_PASSWORD}
+     ai:
+       google:
+         genai:
+           api-key: ${API_KEY} # Your Gemini API Key from Google AI Studio
+           chat:
+             options:
+               model: ${LLM_MODEL_NAME_OR_ID}
+  datasource:
+    url: ${DATABASE_URL}
+    username: ${DATABASE_USERNAME}
+    password: ${DATABASE_PASSWORD}
     ```
 
 3.  **Run the Application**
