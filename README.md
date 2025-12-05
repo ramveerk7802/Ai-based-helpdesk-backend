@@ -1,6 +1,6 @@
 # AI-Based Helpdesk System 🛡️
 
-![Java](https://img.shields.io/badge/Java-17%2B-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white) ![Kotlin](https://img.shields.io/badge/Kotlin-2.0-7F52FF?style=for-the-badge&logo=kotlin&logoColor=white) ![Spring Boot](https://img.shields.io/badge/Spring_Boot-3.2-6DB33F?style=for-the-badge&logo=spring&logoColor=white) ![Spring AI](https://img.shields.io/badge/Spring_AI-0.8-6DB33F?style=for-the-badge&logo=spring&logoColor=white)
+![Java](https://img.shields.io/badge/Java-17%2B-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white) ![Kotlin](https://img.shields.io/badge/Kotlin-2.0-7F52FF?style=for-the-badge&logo=kotlin&logoColor=white) ![Spring Boot](https://img.shields.io/badge/Spring_Boot-3.5.8-6DB33F?style=for-the-badge&logo=spring&logoColor=white) ![Spring AI](https://img.shields.io/badge/Spring_AI-1.1.1-6DB33F?style=for-the-badge&logo=spring&logoColor=white)
 
 An intelligent, conversational Helpdesk Agent designed for **RV Tech Support**. The system uses **Spring Boot** and **Spring AI** to leverage Large Language Models (LLMs) with **Function Calling** capabilities. The AI agent, "Liza," interacts directly with the database to create, update, and retrieve support tickets while maintaining a polite and professional persona.
 
