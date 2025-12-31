@@ -68,7 +68,7 @@ The LLM is mapped to the following Kotlin functions in `TicketDatabaseTool`:
 ### Prerequisites
 * JDK 21 or higher
 * Maven or Gradle
-* An API Key (OpenAI, Anthropic, or Mistral)
+* An API Key (Gemini Api, GenAi, Anthropic)
 
 ### Installation
 
