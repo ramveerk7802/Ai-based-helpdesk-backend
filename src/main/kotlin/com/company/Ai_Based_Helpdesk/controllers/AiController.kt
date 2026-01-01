@@ -14,6 +14,7 @@ class AiController(private val aiService: AiService) {
 
     @PostMapping
     fun getResponse(@RequestBody query: String): ResponseEntity<String>{
+        
         return ResponseEntity.status(HttpStatus.OK).body(aiService.getResponseFromAssistance(query = query))
     }
 }
